@@ -1,0 +1,95 @@
+<html>
+<body>
+<div id="main_container" style="margin:0 auto;width:900px;position:relative;">
+    <div class="logo" style="float: right;height: 41px;width: 170px;"><img src="${urls.get(3)}"></div>
+    <div class="heading" style="float: left;font-family: arial;font-size: 25px;font-weight: bold;color: #000000;width: 100%;">Congratulations! Your VELObill for eletricity is ready
+    </div>
+    <div class="horizontal_line" style="background: none repeat scroll 0 0 #ccc;
+    float: left;
+    height: 1px;
+    position: relative;
+    top: 10px;
+    width: 100%;"></div>
+    <div class="sub_heading" style="color: #000000;
+    float: left;
+    font-family: arial;
+    font-size: 15px;
+    position: relative;
+    top: 15px;
+    width: 100%;">Consider allowing us to connect VELObill to your natural gas and water meters as well</div>
+    <div id="middle_container" style="float: left;width: 100%;">
+        <div class="middle_container_txt" style="float: left;
+    font-family: arial;
+    font-size: 35px;
+    margin-left: 105px;
+    margin-top: 79px;
+    width: 207px;">Here's how to make your experience a great one.</div>
+        <div class="middle_container_image" style=" float: right;
+    margin-top: 20px;
+    min-height: 359px;
+    width: 488px;"><img src="${urls.get(4)}"></div>
+    </div>
+
+    ## footer container
+
+<div id="footer_container" style=" float: left;
+    margin-top: 55px;
+    width: 900px;">
+	   <div class="utility1" style="float: left;height:25%;width:300px;border-right: 1px solid #CCCCCC;">
+	     <div class="utility2_inner_div" style="float: left;margin-left: 39px;">
+	    <span class="utility_heading" style="color: #000000;font-family: arial;font-size: 15px;font-weight: bold;float: left;">1.Start with the bill of the future</span></br>
+		<span class="utility_txt" style="color: #999999;
+    float: left;
+    font-family: arial;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    width: 211px;">The bill of the future brings all of your utility data into one simple view?</span>
+		 <div class="utility_img" style="float: left;
+    margin-left: 55px;
+    margin-top: 32px;
+    min-height: 94px;
+    width: 92px;"><a href="${urls.get(8)}" target="_blank"><img src="${urls.get(5)}"></a></div>
+		 </div>
+	   </div>
+	    <div class="utility2" style="float: left;height:25%;width:300px;border-right: 1px solid #CCCCCC;">
+		  <div class="utility2_inner_div" style="float: left;margin-left: 39px;">
+		 <span class="utility_heading" style="color: #000000;font-family: arial;font-size: 15px;font-weight: bold;float: left;">2.Learn how to cut utility costs</span></br>
+		 <span class="utility_txt" style="color: #999999;
+    float: left;
+    font-family: arial;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    width: 211px;">We identify waste and link you to providers that can deliver savings</span>
+		 <div class="utility_img" style="float: left;
+    margin-left: 55px;
+    margin-top: 32px;
+    min-height: 94px;
+    width: 92px;"><a href="${urls.get(9)}" target="_blank"><img src="${urls.get(6)}"></a></div>
+		 </div>
+		</div>
+
+		<div class="utility3" style="float: left;height:25%;width:298px;">
+		 <div class="utility2_inner_div" style="float: left;margin-left: 39px;">
+		<span class="utility_heading" style="color: #000000;font-family: arial;font-size: 15px;font-weight: bold;float: left;">3. Connect to another utility</span></br>
+		<span class="utility_txt" style="color: #999999;
+    float: left;
+    font-family: arial;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    width: 211px;">Allow us to connect to your natural gas and water meters</span>
+		<div class="utility_img" style="float: left;
+    margin-left: 55px;
+    margin-top: 32px;
+    min-height: 94px;
+    width: 92px;"><a href="${urls.get(10)}" target="_blank"><img src="${urls.get(7)}"></a></div>
+		</div>
+	    </div>
+
+</div>
+
+</div>
+</body>
+</html>

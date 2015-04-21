@@ -1,0 +1,31 @@
+import net.zfp.entity.campaign.CampaignRule;
+import net.zfp.entity.rule.RuleBook;
+import net.zfp.entity.weather.Weather;
+global net.zfp.entity.rule.RuleResult result;
+
+rule "Determine if temperature attribute exists "
+when
+	$ruleBook : RuleBook()
+	$weather : Weather()
+	$campaignRule : CampaignRule(ruleAttribute.attribute == "ATMOSPHERE_TEMPERATURE") from $ruleBook.rules
+	
+then
+result.setCheckWeather(Boolean.TRUE);
+end
+
+rule "Determine if temperature attribute exists and higher than certain"
+when
+	$ruleBook : RuleBook()
+	$weather : Weather()
+	$campaignRule : CampaignRule((ruleAttribute.attribute == "ATMOSPHERE_TEMPERATURE") && (
+			(ruleCondition.condition == ">" && $weather.highTemperature > integerValue) ||
+			(ruleCondition.condition == "<" && $weather.lowTemperature < integerValue ) ||
+			(ruleCondition.condition == ">=" && $weather.highTemperature >= integerValue) ||
+			(ruleCondition.condition == "<=" && $weather.lowTemperature <= integerValue) ||
+			(ruleCondition.condition == "==" && $weather.lowTemperature == integerValue) 
+			)) from $ruleBook.rules
+	
+then
+result.setWeatherCondition(Boolean.TRUE);
+end
+

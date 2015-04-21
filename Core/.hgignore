@@ -1,0 +1,10 @@
+syntax: regexp
+^target$
+^build$
+DS_Store$
+^src/main/webapp/META-INF/MANIFEST\.MF$
+^\.svn
+^\.swp
+^velo.iml$
+^velo.iws$
+^velo.ipr$

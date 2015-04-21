@@ -1,0 +1,15 @@
+import net.zfp.entity.weather.ForecastWeatherData
+import net.zfp.entity.account.MemberExtendedProfile
+import net.zfp.entity.AccountSegment
+
+global net.zfp.entity.weather.WeatherRuleResult result;
+
+rule "Heat Check"
+when
+$forecast : ForecastWeatherData(highTemp > 30, $forecastLocationId : location.id)
+//$memberExtended : MemberExtendedProfile(location.id == $forecastLocationId, $memberId : user.id)
+//$accountSegment : AccountSegment(segment.code=="Team Zero UAT", user.id == $memberId)
+
+then
+result.setHeatAlert(Boolean.TRUE);
+end

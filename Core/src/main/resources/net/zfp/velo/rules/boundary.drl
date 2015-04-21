@@ -1,0 +1,26 @@
+import net.zfp.entity.campaign.CampaignRule;
+import net.zfp.entity.rule.RuleBook;
+import net.zfp.entity.rule.RuleBoundary;
+global net.zfp.entity.rule.RuleResult result;
+
+rule "Determine if boundary attribute exists "
+when
+	$ruleBook : RuleBook()
+	$campaignRule : CampaignRule(ruleAttribute.attribute == "BOUNDARIES") from $ruleBook.rules
+	
+then
+result.setCheckBoundaries(Boolean.TRUE);
+end
+
+rule "Determine if boundary attribute exists and values are in the boundary"
+when
+	$ruleBook : RuleBook()
+	$ruleBoundary : RuleBoundary()
+	$campaignRule : CampaignRule((ruleAttribute.attribute == "BOUNDARIES") && 
+			$ruleBoundary.targetLongitude >= $ruleBoundary.boundaryOneLongitude && $ruleBoundary.targetLongitude <= $ruleBoundary.boundaryTwoLongitude &&
+			$ruleBoundary.targetLatitude >= $ruleBoundary.boundaryOneLatitude && $ruleBoundary.targetLatitude <= $ruleBoundary.boundaryTwoLatitude
+	) from $ruleBook.rules
+	
+then
+result.setBoundariesCondition(Boolean.TRUE);
+end

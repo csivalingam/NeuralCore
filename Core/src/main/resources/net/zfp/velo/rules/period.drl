@@ -1,0 +1,55 @@
+import net.zfp.entity.campaign.CampaignRule;
+import net.zfp.entity.rule.RuleBook;
+import net.zfp.entity.DateNow;
+global net.zfp.entity.rule.RuleResult result;
+
+rule "Determine if start time condition exists in rules"
+when
+	$ruleBook : RuleBook()
+	$campaignRule : CampaignRule(ruleAttribute.attribute == "START_TIME")  from $ruleBook.rules
+	
+then
+result.setCheckStartTime(Boolean.TRUE);
+end
+
+rule "Determine if end time condition exists in rules"
+when
+	$ruleBook : RuleBook()
+	$campaignRule : CampaignRule(ruleAttribute.attribute == "END_TIME")  from $ruleBook.rules
+	
+then
+result.setCheckEndTime(Boolean.TRUE);
+end
+
+rule "Determine if a hour value is greater than or equal to start time value"
+when
+	$ruleBook : RuleBook()
+	$currentDate : DateNow()
+	$campaignRule : CampaignRule((ruleAttribute.attribute == "START_TIME") && (
+			(ruleCondition.condition == ">" && $currentDate.hourValue > integerValue) ||
+			(ruleCondition.condition == "<" && $currentDate.hourValue < integerValue) ||
+			(ruleCondition.condition == ">=" && $currentDate.hourValue >= integerValue) ||
+			(ruleCondition.condition == "<=" && $currentDate.hourValue <= integerValue) ||
+			(ruleCondition.condition == "==" && $currentDate.hourValue == integerValue)
+	)) from $ruleBook.rules
+	
+then
+
+result.setStartTimeCondition(Boolean.TRUE);
+end
+
+rule "Determine if a hour value is less than or equal to end time value"
+when
+	$ruleBook : RuleBook()
+	$currentDate : DateNow()
+	$campaignRule : CampaignRule((ruleAttribute.attribute == "END_TIME") && (
+			(ruleCondition.condition == ">" && $currentDate.hourValue > integerValue) ||
+			(ruleCondition.condition == "<" && $currentDate.hourValue < integerValue) ||
+			(ruleCondition.condition == ">=" && $currentDate.hourValue >= integerValue) ||
+			(ruleCondition.condition == "<=" && $currentDate.hourValue <= integerValue) ||
+			(ruleCondition.condition == "==" && $currentDate.hourValue == integerValue)
+			)) from $ruleBook.rules
+	
+then
+result.setEndTimeCondition(Boolean.TRUE);
+end

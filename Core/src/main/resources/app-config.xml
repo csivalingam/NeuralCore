@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+   	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<!-- <import resource="classpath:META-INF/cxf/cxf-extension-jaxrs-binding.xml" /> -->
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+	<!-- Property File Config -->
+	<bean id="veloProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="ignoreResourceNotFound" value="true"/>
+		<property name="locations">
+			<list>
+				<value>classpath:net/zfp/velo/velo-application.properties</value>
+				<!-- Test property file used for testing, should not be used in production -->
+				<value>file:../data/velo-application.properties</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true"/>
+		<property name="properties" ref="veloProperties"/>
+	</bean>
+
+	<!-- published services endpoints -->
+	<context:annotation-config />
+	<context:component-scan base-package="net.zfp" />
+	<tx:annotation-driven mode="proxy" proxy-target-class="true" />
+	<aop:config proxy-target-class="true" />
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="zerofootprint" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="false" />
+				<property name="generateDdl" value="true" />
+				<property name="databasePlatform" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<!-- Auto-Injection of Application Context 
+	<bean id="applicationContextProvisioner" class="net.zerofootprint.velo.service.util.ServiceLocator"/>
+	-->
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com"/>
+		<property name="port" value="587"/>
+		<property name="protocol" value="smtp"/>
+		<property name="username" value="henry.zfp@gmail.com"/>
+		<property name="password" value="zfRoot#11"/>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.timeout">5000</prop>
+				<prop key="mail.smtp.connectiontimeout">5000</prop>
+				<prop key="mail.debug">false</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.quitwait">false</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="velocityProperties">
+			<value>
+				resource.loader=class
+				class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+			</value>
+		</property>
+	</bean>
+	
+	<!-- <bean id="entityManager" class="org.springframework.orm.jpa.support.SharedEntityManagerBean"> 
+		<property name="entityManagerFactory" ref="entityManagerFactory"/> </bean> 
+		<bean id="domainDao" class="net.zfp.dao.DomainDao"> <property name="entityManager" 
+		ref="entityManager"/> </bean> -->
+
+	<jaxrs:server id="veloWebServices" address="/">
+		<jaxrs:serviceBeans>
+			<ref bean="loginService" />
+			<ref bean="userService" />
+			<ref bean="calculaterService" />
+			<ref bean="utilityService" />
+			<ref bean="carbonService" />
+			<ref bean="mediaStreamService" />
+			<ref bean="campaignService" />
+			<ref bean="footprintService" />
+			<ref bean="productService" />
+			<ref bean="tipService" />
+			<ref bean="newsService" />
+			<ref bean="electricityService" />
+			<ref bean="offerService" />
+			<ref bean="surveyService" />
+			<ref bean="drivingService" />
+			<ref bean="registerService" />
+			<ref bean="personalMotionService" />
+			<ref bean="connectorService" />
+			<ref bean="salesOrderService" />
+			<ref bean="groupService" />
+			<ref bean="memberActivityService" />
+			<ref bean="taxService" />
+			<ref bean="providerService" />
+			<ref bean="uploadService" />
+			<ref bean="accountService" />
+			<ref bean="whatsUpService" />
+			<ref bean="mobileService" />
+			<ref bean="activityService" />
+			<ref bean="partnerService" />
+			<ref bean="segmentService" />
+			<ref bean="channelActivityService" />
+			<ref bean="weatherService" />
+			<ref bean="communityService" />
+			<ref bean="bannerService" />
+			<ref bean="charityService" />
+			<ref bean="walletService" />
+			<ref bean="sourceService" />
+		</jaxrs:serviceBeans>
+		
+		<jaxrs:providers>
+			<bean class="org.apache.cxf.jaxrs.provider.json.JSONProvider">
+			<property name="dropRootElement" value="false" />
+			<property name="serializeAsArray" value="false" />
+ 			<property name="dropCollectionWrapperElement" value="false" />
+ 			
+			</bean>
+		</jaxrs:providers>
+		
+	</jaxrs:server>
+	<!-- END of published services endpoints -->
+	
+	<!-- service beans -->
+	<bean id="sourceService" class="net.zfp.service.SourceServiceImpl" />
+	<bean id="walletService" class="net.zfp.service.WalletServiceImpl" />
+	<bean id="charityService" class="net.zfp.service.CharityServiceImpl" />
+	<bean id="bannerService" class="net.zfp.service.BannerServiceImpl" />
+	<bean id="communityService" class="net.zfp.service.CommunityServiceImpl" />
+	<bean id="weatherService" class="net.zfp.service.WeatherServiceImpl" />
+	<bean id="channelActivityService" class="net.zfp.service.ChannelActivityServiceImpl" />
+	<bean id="segmentService" class="net.zfp.service.SegmentServiceImpl" />
+	<bean id="partnerService" class="net.zfp.service.PartnerServiceImpl" />
+	<bean id="activityService" class="net.zfp.service.ActivityServiceImpl" />
+	<bean id="mobileService" class="net.zfp.service.MobileServiceImpl" />
+	<bean id="whatsUpService" class="net.zfp.service.WhatsUpServiceImpl" />
+	<bean id="accountService" class="net.zfp.service.AccountServiceImpl" />
+	<bean id="providerService" class="net.zfp.service.ProviderServiceImpl" />
+	<bean id="taxService" class="net.zfp.service.TaxServiceImpl" />
+	<bean id="memberActivityService" class="net.zfp.service.MemberActivityServiceImpl" />
+	<bean id="salesOrderService" class="net.zfp.service.SalesOrderServiceImpl" />
+	<bean id="connectorService" class="net.zfp.service.ConnectorServiceImpl" />
+	<bean id="groupService" class="net.zfp.service.GroupServiceImpl" />
+	<bean id="personalMotionService" class="net.zfp.service.PersonalMotionServiceImpl" />
+	<bean id="registerService" class="net.zfp.service.RegisterServiceImpl" />
+	<bean id="drivingService" class="net.zfp.service.DrivingServiceImpl" />
+	<bean id="offerService" class="net.zfp.service.OfferServiceImpl" />
+	<bean id="electricityService" class="net.zfp.service.ElectricityServiceImpl" />
+	<bean id="footprintService" class="net.zfp.service.FootprintServiceImpl" />
+	<bean id="loginService" class="net.zfp.service.LoginServiceImpl" />
+	<bean id="userService" class="net.zfp.service.UserServiceImpl" />
+	<bean id="surveyService" class="net.zfp.service.SurveyServiceImpl" />
+	<bean id="calculaterService" class="net.zfp.service.CalculaterServiceImpl" />
+	<bean id="utilityService" class="net.zfp.service.UtilityServiceImpl" />
+	<bean id="carbonService" class="net.zfp.service.CarbonServiceImpl" />
+	<bean id="mediaStreamService" class="net.zfp.service.MediaStreamServiceImpl" />
+	<bean id="campaignService" class="net.zfp.service.CampaignServiceImpl" />
+	<bean id="productService" class="net.zfp.service.ProductServiceImpl" />
+	<bean id="tipService" class="net.zfp.service.TipServiceImpl" />
+	<bean id="newsService" class="net.zfp.service.NewsServiceImpl" />
+	<bean id="uploadService" class="net.zfp.service.UploadServiceImpl" />
+	
+	<bean id="groupCampaignDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.group.GroupCampaign" />
+	</bean>
+	<bean id="ruleDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.rule.RuleAttribute" />
+	</bean>
+	<bean id="surveySummaryDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.survey.SurveySummary" />
+	</bean>
+	<bean id="walletDao" class="net.zfp.dao.wallet.WalletDao">
+		<constructor-arg value="net.zfp.entity.wallet.Wallet" />
+	</bean>
+	<bean id="fundraiserDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.charity.Fundraiser" />
+	</bean>
+	<bean id="channelActivityDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.channel.ChannelActivity" />
+	</bean>
+	<bean id="marketingBannerDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.banner.MarketingBanner" />
+	</bean>
+	<bean id="roleDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.UserRole" />
+	</bean>
+	<bean id="mobileDeviceDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.mobile.MobileDevice" />
+	</bean>
+	<bean id="communityNewsDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.community.CommunityNews" />
+	</bean>
+	<bean id="membershipNewsDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.membership.MembershipNews" />
+	</bean>
+	<bean id="alertNewsDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.alert.AlertNews" />
+	</bean>
+	
+	<bean id="userDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.User" />
+	</bean>
+	<bean id="accountAuthorityDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.Account_Authority" />
+	</bean>
+	
+	<bean id="airportDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.Airport" />
+	</bean>
+	<bean id="fundraiseDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.Fundraise" />
+	</bean>
+	<bean id="calculaterResultDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.CalculaterResult" />
+	</bean>
+	<bean id="domainDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.Domain" />
+	</bean>
+	<bean id="translationDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.Translation" />
+	</bean>
+	<bean id="componentDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.Component" />
+	</bean>
+	<bean id="carbonTransactionDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.carbon.CarbonTransaction" />
+	</bean>
+	<bean id="paymentTransactionDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.PaymentTransaction" />
+	</bean>
+	<bean id="feedbackDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.Feedback" />
+	</bean>
+	<bean id="imageDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.Image" />
+	</bean>
+	<bean id="unitDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.Unit" />
+	</bean>
+	<bean id="tweetDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.Tweet" />
+	</bean>
+		<bean id="portalTypeDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.PortalType" />
+	</bean>
+		<bean id="locationDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.Location" />
+	</bean>
+	<bean id="memberExtendedProfileDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.account.MemberExtendedProfile" />
+	</bean>
+	<bean id="memberHouseholdProfileDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.account.MemberHouseholdProfile" />
+	</bean>
+	<bean id="sourceDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.Source" />
+	</bean>
+	
+	<bean id="sourceHierarchyDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.SourceHierarchy" />
+	</bean>
+	
+	<bean id="electricityDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.electricity.ElectricityDataMinute" />
+	</bean>
+	
+	<bean id="factorDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.Factor" />
+	</bean>
+	
+	<bean id="paperDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.print.PrintDataMinute" />
+	</bean>
+	
+	<bean id="campaignDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.campaign.Campaign" />
+	</bean>
+	
+	<bean id="carbonFootprintDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.carbon.CarbonFootprint" />
+	</bean>
+	
+	<bean id="communityDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.community.Community" />
+	</bean>
+	
+	<bean id="accountSegmentDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.AccountSegment" />
+	</bean>
+	
+	<bean id="segmentDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.segment.Segment" />
+	</bean>
+	
+	<bean id="accountSourceDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.AccountSource" />
+	</bean>
+	
+	<bean id="accountGroupDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.account.AccountGroup" />
+	</bean>
+	
+	<bean id="accountGroupCommunicationStatusDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.account.AccountGroupCommunicationStatus" />
+	</bean>
+	
+	<bean id="personalFootprintSurveyDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.PersonalFootprintSurvey" />
+	</bean>
+	
+	<bean id="carbonTransactionDetailDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.carbon.CarbonTransactionDetail" />
+	</bean>
+	
+	<bean id="tipDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.tips.Tips" />
+	</bean>
+	
+	<bean id="newsDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.News" />
+	</bean>
+	
+	<bean id="productDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.product.Product" />
+	</bean>
+	
+	<bean id="categoryDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.category.Category" />
+	</bean>
+	
+	<bean id="providerSourceDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.provider.ProviderSource" />
+	</bean>
+	
+	<bean id="offerDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.offer.Offer" />
+	</bean>
+	
+	<bean id="statusDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.Status" />
+	</bean>
+	
+	<bean id="surveyDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.survey.Survey" />
+	</bean>
+	
+	<bean id="groupsDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.group.Groups" />
+	</bean>
+	
+	<bean id="drivingDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.driving.DrivingHour" />
+	</bean>
+	
+	<bean id="personalMotionDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.personalmotion.PersonalMotion" />
+	</bean>
+	
+	<bean id="surveyAnswersDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.survey.SurveyAnswers" />
+	</bean>
+	
+	<bean id="accountCampaignDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.account.AccountCampaign" />
+	</bean>
+	
+	<bean id="salesOrderDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.salesorder.SalesOrder" />
+	</bean>
+	
+	<bean id="salesOrderDetailDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.salesorder.SalesOrderDetail" />
+	</bean>
+	
+	<bean id="salesOrderBillingDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.salesorder.SalesOrderBilling" />
+	</bean>
+	
+	<bean id="salesOrderShippingDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.salesorder.SalesOrderShipping" />
+	</bean>
+	
+	<bean id="pointsAccountDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.PointsAccount" />
+	</bean>
+	
+	<bean id="providerDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.provider.Provider" />
+	</bean>
+	
+	<bean id="utilityConnectionRequestDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.utility.UtilityConnectionRequest" />
+	</bean>
+	
+	<bean id="mediaStreamDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.media.MediaStream" />
+	</bean>
+
+	<bean id="providerAccountDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.provider.ProviderAccount" />
+	</bean>
+	
+	
+	<bean id="memberActivityDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.memberactivity.MemberActivity" />
+	</bean>
+	
+	<bean id="taxValueDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.tax.TaxValue" />
+	</bean>
+
+	<bean id="connectorDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.connector.Connector" />
+	</bean>
+	
+	<bean id="uploadImageDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.upload.UploadImage" />
+	</bean>
+	
+	<bean id="communicationPreferenceDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.communication.CommunicationPreference" />
+	</bean>
+	
+	<bean id="pointsTransactionDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.salesorder.PointsTransaction" />
+	</bean>
+	
+	<bean id="partnerPointsTransactionDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.partner.PartnerPointsTransaction" />
+	</bean>
+	<bean id="partnerPointsAccountDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.partner.PartnerPointsAccount" />
+	</bean>
+	<bean id="businessPartnerDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.partner.BusinessPartner" />
+	</bean>
+	<bean id="forecastWeatherDataDao" class="net.zfp.dao.EntityDao">
+		<constructor-arg value="net.zfp.entity.weather.ForecastWeatherData" />
+	</bean>
+</beans>

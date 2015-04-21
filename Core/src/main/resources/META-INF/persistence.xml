@@ -1,0 +1,289 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+	<persistence-unit name="zerofootprint" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<class>net.zfp.entity.User</class>
+		<class>net.zfp.entity.UserRole</class>
+		<class>net.zfp.entity.Account_Authority</class>
+		<class>net.zfp.entity.Contact</class>
+		<class>net.zfp.entity.CountryList</class>
+		<class>net.zfp.entity.Operator</class>
+		<class>net.zfp.entity.Airport</class>
+		<class>net.zfp.entity.Domain</class>
+		<class>net.zfp.entity.CalculaterResult</class>
+		<class>net.zfp.entity.Translation</class>
+		<class>net.zfp.entity.BehaviorAttribute</class>
+		<class>net.zfp.entity.Component</class>
+		<class>net.zfp.entity.carbon.CarbonTransaction</class>
+		<class>net.zfp.entity.carbon.CarbonTransactionDetail</class>
+		<class>net.zfp.entity.PaymentTransaction</class>
+		<class>net.zfp.entity.Feedback</class>
+		<class>net.zfp.entity.Image</class>
+		<class>net.zfp.entity.Unit</class>
+		<class>net.zfp.entity.media.MediaStream</class>
+		<class>net.zfp.entity.media.MediaImage</class>
+		<class>net.zfp.entity.media.MediaScreen</class>
+		<class>net.zfp.entity.media.MediaScreenList</class>
+		<class>net.zfp.entity.media.MediaHeader</class>
+		<class>net.zfp.entity.media.MediaFooter</class>
+		<class>net.zfp.entity.media.MediaResolutionType</class>
+		<class>net.zfp.entity.media.MediaTransitionType</class>
+		<class>net.zfp.entity.media.MediaScreenType</class>
+		<class>net.zfp.entity.media.MediaScreenAttribute</class>
+		<class>net.zfp.entity.media.MediaScreenAttributeValue</class>
+		<class>net.zfp.entity.Status</class>
+		<class>net.zfp.entity.PointsAccount</class>
+		<class>net.zfp.entity.Fundraise</class>
+		<class>net.zfp.entity.Location</class>
+		<class>net.zfp.entity.AverageType</class>
+		<class>net.zfp.entity.segment.Segment</class>
+		<class>net.zfp.entity.segment.SegmentType</class>
+		<class>net.zfp.entity.AccountSegment</class>
+		<class>net.zfp.entity.account.AccountCampaign</class>	
+		
+		<class>net.zfp.entity.account.AccountGroup</class>	
+		<class>net.zfp.entity.account.MemberExtendedProfile</class>	
+		<class>net.zfp.entity.account.MemberHouseholdProfile</class>	
+		<class>net.zfp.entity.account.MemberProfileValue</class>	
+		<class>net.zfp.entity.account.AccountGroupCommunicationStatus</class>
+		
+		<class>net.zfp.entity.activity.ActivityTrackerType</class>
+		<class>net.zfp.entity.activity.BaselineType</class>
+		<class>net.zfp.entity.activity.PeriodType</class>
+		
+		<class>net.zfp.entity.alert.AlertNews</class>
+			
+		<class>net.zfp.entity.banner.MarketingBanner</class>
+		<class>net.zfp.entity.banner.MarketingBannerType</class>
+			
+		<class>net.zfp.entity.banner.ProgramBanner</class>
+			
+		<class>net.zfp.entity.behavior.BehaviorAction</class>	
+		<class>net.zfp.entity.behavior.BehaviorTrackerType</class>	
+		
+		<class>net.zfp.entity.campaign.Campaign</class>
+		<class>net.zfp.entity.campaign.CampaignTemplate</class>
+		<class>net.zfp.entity.campaign.CampaignTemplateType</class>
+		<class>net.zfp.entity.campaign.CampaignAction</class>
+		<class>net.zfp.entity.campaign.CampaignActionList</class>
+		
+		<class>net.zfp.entity.campaign.CampaignFact</class>
+		<class>net.zfp.entity.campaign.CampaignTarget</class>
+		<class>net.zfp.entity.campaign.CampaignTargetMode</class>
+		<class>net.zfp.entity.campaign.CampaignTargetType</class>
+		<class>net.zfp.entity.campaign.CampaignFactList</class>
+		<class>net.zfp.entity.campaign.CampaignProgress</class>
+		<class>net.zfp.entity.campaign.CampaignGroupProgress</class>
+		<class>net.zfp.entity.campaign.CampaignGroupProgressActivity</class>
+		<class>net.zfp.entity.campaign.CampaignProgressActivity</class>
+		<class>net.zfp.entity.campaign.CampaignType</class>
+		
+		<class>net.zfp.entity.campaign.CampaignRule</class>
+		
+		<class>net.zfp.entity.charity.Fundraiser</class>
+		
+		<class>net.zfp.entity.channel.ChannelActivity</class>
+		<class>net.zfp.entity.channel.ChannelType</class>
+		
+		<class>net.zfp.entity.communication.CommunicationPreference</class>
+		
+		<class>net.zfp.entity.community.Community</class>
+		<class>net.zfp.entity.community.CommunityType</class>
+		<class>net.zfp.entity.community.CorporateCategory</class>
+		<class>net.zfp.entity.community.CorporatePreference</class>
+		<class>net.zfp.entity.community.CommunityPortal</class>
+		<class>net.zfp.entity.community.CommunityPortalTheme</class>
+		<class>net.zfp.entity.community.CommunityFeature</class>
+		<class>net.zfp.entity.community.CommunityProduct</class>
+		<class>net.zfp.entity.community.CommunityHierarchy</class>
+		
+		<class>net.zfp.entity.community.CommunityNews</class>
+		
+		<class>net.zfp.entity.electricity.ElectricityAverage</class>
+		
+		<class>net.zfp.entity.connector.Connector</class>
+		
+		<class>net.zfp.entity.device.DeviceAttribute</class>	
+		<class>net.zfp.entity.device.DeviceSourceType</class>
+		
+		<class>net.zfp.entity.utility.UtilityConnectionRequest</class>
+		<class>net.zfp.entity.utility.UtilityType</class>
+		
+		<class>net.zfp.entity.memberactivity.MemberActivity</class>
+		<class>net.zfp.entity.memberactivity.MemberActivityType</class>
+		
+		<class>net.zfp.entity.membership.MembershipNews</class>
+		
+		<class>net.zfp.entity.mobile.MobileDevice</class>
+		
+		<class>net.zfp.entity.newscontent.NewsContentType</class>
+		
+		<class>net.zfp.entity.partner.BusinessPartner</class>
+		<class>net.zfp.entity.partner.BusinessPartnerType</class>
+		<class>net.zfp.entity.partner.PartnerActivityType</class>
+		<class>net.zfp.entity.partner.PartnerPointsAccount</class>
+		<class>net.zfp.entity.partner.PartnerPointsTransaction</class>
+		
+		<class>net.zfp.entity.salesorder.PointsTransaction</class>
+		<class>net.zfp.entity.salesorder.PointsTransactionType</class>
+		<class>net.zfp.entity.salesorder.SalesOrder</class>	
+		<class>net.zfp.entity.salesorder.SalesOrderDetail</class>
+		<class>net.zfp.entity.salesorder.SalesOrderReferenceType</class>	
+		<class>net.zfp.entity.salesorder.SalesOrderType</class>	
+		<class>net.zfp.entity.salesorder.SalesOrderBilling</class>
+		<class>net.zfp.entity.salesorder.SalesOrderShipping</class>
+		
+		<class>net.zfp.entity.tax.TaxLocation</class>	
+		<class>net.zfp.entity.tax.TaxRule</class>	
+		<class>net.zfp.entity.tax.TaxValue</class>	
+		
+		<class>net.zfp.entity.EmailTemplate</class>
+		<class>net.zfp.entity.EmailTemplateType</class>
+		
+		<class>net.zfp.entity.group.Groups</class>
+		<class>net.zfp.entity.group.GroupsType</class>
+		<class>net.zfp.entity.group.GroupSegment</class>
+		<class>net.zfp.entity.group.GroupCampaign</class>
+				
+		<class>net.zfp.entity.Tweet</class>
+		<class>net.zfp.entity.Source</class>
+		<class>net.zfp.entity.SourceType</class>
+		<class>net.zfp.entity.source.SourceUnit</class>
+		<class>net.zfp.entity.SourceHierarchy</class>
+		<class>net.zfp.entity.source.SourceMode</class>
+		<class>net.zfp.entity.Factor</class>
+		<class>net.zfp.entity.FactorAttribute</class>
+		<class>net.zfp.entity.electricity.ElectricityDataMinute</class>
+		<class>net.zfp.entity.electricity.ElectricityDataDay</class>
+		<class>net.zfp.entity.electricity.ElectricityRate</class>
+		<class>net.zfp.entity.electricity.ElectricityDataMonth</class>
+		<class>net.zfp.entity.electricity.ElectricityDataHour</class>
+		<class>net.zfp.entity.electricity.ElectricitySummary</class>
+		<class>net.zfp.entity.electricity.ElectricityBaseline</class>
+		<class>net.zfp.entity.electricity.ElectricityWeatherNormMonth</class>
+		<class>net.zfp.entity.electricity.ElectricityWeatherNormYear</class>
+		<class>net.zfp.entity.electricity.ElectricityWeatherNormHistory</class>
+		<class>net.zfp.entity.PortalType</class>
+		<class>net.zfp.entity.print.PrintDataMinute</class>
+		<class>net.zfp.entity.print.PrintQuality</class>
+		<class>net.zfp.entity.print.PrintType</class>
+		
+		<class>net.zfp.entity.feature.Feature</class>
+		<class>net.zfp.entity.feature.FeatureTravelType</class>
+		<class>net.zfp.entity.product.Product</class>
+		<class>net.zfp.entity.product.ProductType</class>
+		<class>net.zfp.entity.product.ProductSKU</class>
+		<class>net.zfp.entity.product.ProductCategory</class>
+		<class>net.zfp.entity.product.ProductCommunity</class>
+		<class>net.zfp.entity.product.ProductBanner</class>
+		
+		<class>net.zfp.entity.portal.PortalLayout</class>
+		
+		<class>net.zfp.entity.offer.Offer</class>
+		<class>net.zfp.entity.offer.OfferBehavior</class>
+		<class>net.zfp.entity.offer.OfferBehaviorAttribute</class>
+		<class>net.zfp.entity.offer.OfferTemplate</class>
+		<class>net.zfp.entity.offer.OfferType</class>
+		<class>net.zfp.entity.offer.OfferValue</class>
+		<class>net.zfp.entity.offer.OfferValueType</class>
+		<class>net.zfp.entity.offer.OfferCategory</class>
+		<class>net.zfp.entity.offer.OfferBonus</class>
+		<class>net.zfp.entity.offer.OfferPromoCode</class>
+		
+		<class>net.zfp.entity.survey.Survey</class>
+		<class>net.zfp.entity.survey.SurveyAnswerChoices</class>
+		<class>net.zfp.entity.survey.SurveyAnswerRanges</class>
+		<class>net.zfp.entity.survey.SurveyAnswers</class>
+		<class>net.zfp.entity.survey.SurveyAnswerValueType</class>
+		<class>net.zfp.entity.survey.SurveyCategory</class>
+		<class>net.zfp.entity.survey.SurveyQuestions</class>
+		<class>net.zfp.entity.survey.SurveyQuestionType</class>
+		<class>net.zfp.entity.survey.SurveyType</class>
+		
+		<class>net.zfp.entity.survey.SurveySummary</class>
+		<class>net.zfp.entity.survey.SurveyFactor</class>
+		<class>net.zfp.entity.survey.SurveyFactorReference</class>
+		<class>net.zfp.entity.survey.SurveyQuestionRank</class>
+		<class>net.zfp.entity.survey.SurveyTips</class>
+		
+		<class>net.zfp.entity.provider.Provider</class>
+		<class>net.zfp.entity.provider.ProviderAccount</class>
+		<class>net.zfp.entity.provider.ProviderDevice</class>
+		<class>net.zfp.entity.provider.ProviderDeviceMobileReference</class>
+		<class>net.zfp.entity.provider.ProviderSource</class>
+		<class>net.zfp.entity.provider.ProviderType</class>
+		
+		<class>net.zfp.entity.upload.UploadImage</class>
+		
+		<class>net.zfp.entity.rule.RuleAttribute</class>
+		<class>net.zfp.entity.rule.RuleAttributeType</class>
+		<class>net.zfp.entity.rule.RuleCondition</class>
+		<class>net.zfp.entity.rule.RuleOperator</class>
+		
+		<class>net.zfp.entity.News</class>
+		<class>net.zfp.entity.tips.Tips</class>
+		<class>net.zfp.entity.tips.TipsCategory</class>
+		<class>net.zfp.entity.TravelType</class>
+		<class>net.zfp.entity.VehicleType</class>
+		<class>net.zfp.entity.AccountSource</class>
+		
+		<class>net.zfp.entity.weather.CurrentWeatherData</class>
+		<class>net.zfp.entity.weather.ForecastWeatherData</class>
+				
+		<class>net.zfp.entity.category.Category</class>
+		<class>net.zfp.entity.category.CategoryType</class>
+		<class>net.zfp.entity.category.MerchandisingCategory</class>
+		
+		<class>net.zfp.entity.driving.DrivingHour</class>
+		<class>net.zfp.entity.driving.DrivingDay</class>
+		<class>net.zfp.entity.driving.DrivingMonth</class>
+			
+		<class>net.zfp.entity.personalmotion.PersonalMotion</class>
+		<class>net.zfp.entity.personalmotion.PersonalMotionInterval</class>	
+		<class>net.zfp.entity.personalmotion.WalkingHour</class>	
+		<class>net.zfp.entity.personalmotion.WalkingDay</class>
+		<class>net.zfp.entity.personalmotion.WalkingMonth</class>
+		<class>net.zfp.entity.personalmotion.WalkingBoundary</class>
+		<class>net.zfp.entity.personalmotion.WalkingDayAverage</class>
+		<class>net.zfp.entity.personalmotion.RunningDataHour</class>
+		<class>net.zfp.entity.personalmotion.RunningDataDay</class>
+		<class>net.zfp.entity.personalmotion.RunningDataMonth</class>
+		<class>net.zfp.entity.personalmotion.RunningDataDayAverage</class>
+		<class>net.zfp.entity.personalmotion.CyclingDataHour</class>
+		<class>net.zfp.entity.personalmotion.CyclingDataDay</class>
+		<class>net.zfp.entity.personalmotion.CyclingDataMonth</class>
+		<class>net.zfp.entity.personalmotion.CyclingDataDayAverage</class>
+		
+		<class>net.zfp.entity.FootprintType</class>
+		<class>net.zfp.entity.carbon.CarbonFootprint</class>
+		<class>net.zfp.entity.PersonalFootprintSurvey</class>
+		
+		<class>net.zfp.entity.wallet.WalletType</class>
+		<class>net.zfp.entity.wallet.Wallet</class>
+		<class>net.zfp.entity.wallet.PointsType</class>
+		
+		<properties>
+			<property name="dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="false" />
+			<property name="hibernate.use_sql_comments" value="false" />
+			
+			<!-- <property name="hibernate.hbm2ddl.auto" value="create-drop"/> -->
+			<property name="hibernate.connection.url" value="jdbc:mysql://db-data.zerofootprint.net:3306/velo_data" />
+			<property name="hibernate.connection.username" value="data" />
+			<property name="hibernate.connection.password" value="HJDsdfF676asdfDFD" />
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.c3p0.min_size" value="3" />
+			<property name="hibernate.c3p0.max_size" value="10" />
+			<property name="hibernate.c3p0.timeout" value="30" />
+			<property name="hibernate.c3p0.max_statements" value="50" />
+			<property name="hibernate.c3p0.idle_test_period" value="180" />
+		</properties>
+		
+	</persistence-unit>
+
+
+</persistence>

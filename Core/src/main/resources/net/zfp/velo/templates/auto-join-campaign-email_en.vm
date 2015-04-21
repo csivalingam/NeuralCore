@@ -1,0 +1,129 @@
+<html>
+<head>
+<title>email_template</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body style="margin: 0; padding: 0; font-family: Verdana, Tahoma, Arial, sans-serif; font-size: 12px;">
+	<table cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td>
+				<table width="601" align="center" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td>
+							<a href="${GOODcoinsLink}" title="Goodcoins.ca">
+								<img src="https://resources.goodcoins.ca/images/email/images/header.jpg" width="601" height="142" alt="Header Image">
+							</a>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+	<table cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td>
+				<table align="center" cellpadding="0" cellspacing="0" width="600" bgcolor="#FFFFFF" style="padding:20px; font-family: Verdana, Tahoma, Arial, sans-serif; font-size: 12px;">
+					<tr>
+						<td>
+Dear ${name},<br/><br/>
+We've enrolled you in the ${campaignName} campaign. You can earn ${coins} GOODcoins every ${periodType} you reach the target.<br/><br/>
+${campaignDescription}<br/><br/>
+Now you're ready to get started!<br/>
+The GOODcoins Team
+</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+	<table cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td> 
+				<table align="center" width="600" border="0" cellpadding="0" cellspacing="0" bgcolor="#000">
+					<tr>
+						<td colspan="8">
+							<img src="https://resources.goodcoins.ca/images/email/images/bottom_02.jpg" width="600" height="42" alt=""></td>
+						<td>
+							<img src="https://resources.goodcoins.ca/images/email/images/spacer.gif" width="1" height="42" alt=""></td>
+					</tr>
+					<tr>
+						<td rowspan="8">
+							<img src="https://resources.goodcoins.ca/images/email/images/bottom_03.jpg" width="18" height="137" alt=""></td>
+						<td rowspan="3">
+							<a href="http://zerofootprintsoftware.com/" title="zerofootprint.net"><img src="https://resources.goodcoins.ca/images/email/images/bottom_04.jpg" width="129" height="41" alt="Zerofootprint.net" title="www.zerofootprint.net"></a>
+						</td>
+						<td rowspan="8">
+							<img src="https://resources.goodcoins.ca/images/email/images/bottom_05.jpg" width="80" height="137" alt=""></td>
+						<td>
+							<a href="${GOODcoinsLink}" border="0" title="Terms + Conditions"><img src="https://resources.goodcoins.ca/images/email/images/bottom_06.jpg" width="105" height="21" border="0" alt="Terms and Conditions" title="Terms and Conditions"></a>
+						</td>
+						<td rowspan="8">
+							<img src="https://resources.goodcoins.ca/images/email/images/bottom_07.jpg" width="87" height="137" alt=""></td>
+						<td rowspan="2">
+							<a href="https://www.facebook.com/pages/GOODcoins/1432040000374421" title="Facebook"><img src="https://resources.goodcoins.ca/images/email/images/bottom_08.jpg" width="31" height="36" alt="Facebook Page" title="Facebook Page"></a>
+						</td>
+						<td rowspan="2">
+							<a href="https://twitter.com/GOOD_coins" title="Twitter"><img src="https://resources.goodcoins.ca/images/email/images/bottom_09.jpg" width="31" height="36" alt="Twitter" title="Twitter"></a>
+						</td>
+						<td rowspan="8">
+							<img src="https://resources.goodcoins.ca/images/email/images/bottom_10.jpg" width="119" height="137" alt=""></td>
+						<td>
+							<img src="https://resources.goodcoins.ca/images/email/images/spacer.gif" width="1" height="21" alt=""></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="mailto:support@goodcoins.ca" border="0" title="Email us"><img src="https://resources.goodcoins.ca/images/email/images/bottom_11.jpg" border="0" width="105" height="15" alt="Contact support@goodcoins.ca" title="Contact Support"></a>
+						</td>
+						<td>
+							<img src="https://resources.goodcoins.ca/images/email/images/spacer.gif" width="1" height="15" alt="spacer"></td>
+					</tr>
+					<tr>
+						<td rowspan="2">
+							<a href="${GOODcoinsLink}" border="0" title="Unsubscribe"><img src="https://resources.goodcoins.ca/images/email/images/bottom_12.jpg" border="0" width="105" height="16" alt="Unsubscribe"></a>
+						</td>
+						<td colspan="2" rowspan="6">
+							<img src="https://resources.goodcoins.ca/images/email/images/bottom_13.jpg" width="62" height="101" alt=""></td>
+						<td>
+							<img src="https://resources.goodcoins.ca/images/email/images/spacer.gif" width="1" height="5" alt=""></td>
+					</tr>
+					<tr>
+						<td rowspan="2">
+							<img src="https://resources.goodcoins.ca/images/email/images/bottom_14.jpg" width="129" height="26" alt=""></td>
+						<td>
+							<img src="https://resources.goodcoins.ca/images/email/images/spacer.gif" width="1" height="11" alt=""></td>
+					</tr>
+					<tr>
+						<td rowspan="4">
+							<img src="https://resources.goodcoins.ca/images/email/images/bottom_15.jpg" width="105" height="85" alt=""></td>
+						<td>
+							<img src="https://resources.goodcoins.ca/images/email/images/spacer.gif" width="1" height="15" alt=""></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="tel:18558593718" title="Click to call!"><img src="https://resources.goodcoins.ca/images/email/images/bottom_16.jpg" width="129" height="18" alt=""></a>
+						</td>
+						<td>
+							<img src="https://resources.goodcoins.ca/images/email/images/spacer.gif" width="1" height="18" alt=""></td>
+					</tr>
+					<tr>
+						<td>
+							<img src="https://resources.goodcoins.ca/images/email/images/bottom_17.jpg" width="129" height="30" alt=""></td>
+						<td>
+							<img src="https://resources.goodcoins.ca/images/email/images/spacer.gif" width="1" height="30" alt=""></td>
+					</tr>
+					<tr>
+						<td>
+							<img src="https://resources.goodcoins.ca/images/email/images/bottom_18.jpg" width="129" height="22" alt=""></td>
+						<td>
+							<img src="https://resources.goodcoins.ca/images/email/images/spacer.gif" width="1" height="22" alt=""></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+
+<br>
+Welcome to VELO.Thanks for joining us!
+<br/><br/>
+Your user name is <span class="rgtrn"> ${name}. </span>
+<br/><br/>
+
+<div class="rgtrn2">
+
+    <a href="${url}" target="_blank">Click here</a> to experience what it's like to view Green Button data in VELObill. If you've already done so, <br />
+we hope you enjoy VELObill.
+</div>
+<br/><br/>
+All the best,
+<br/><br/>
+Team ZERO
+#*
+- Questions?Visit the <a href="${url}registration/askzero" target="_blank">FAQ</a> page or contact us at <a href="mailto:helpdesk@zerofootprint.net" style="color:blue;">helpdesk@zerofootprint.net</a><br/>
+- Forgot your password? <div class="rgtrn2"><a href="${url}registration/startvelo" target="_blank">Click here</a></div> to reset it.*#
+

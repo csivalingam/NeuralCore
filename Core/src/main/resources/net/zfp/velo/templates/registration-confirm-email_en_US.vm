@@ -1,0 +1,12 @@
+<br/>
+Welcome Aboard ${companyName} , your email and login name is: ${name}, Thanks for joining us.
+<br/><br/>
+You can access our website <a href="${url}">${url}</a> get more infomation.
+<br/><br/>
+We keep your information private and secure using trusted security protocols verified by VeriSignTM.
+We will never share your information with anybody.
+<br/><br/>
+Regards,
+<br/><br/>
+Velo Support Team
+<br/><br/>
